@@ -1,0 +1,93 @@
+.navbar {
+  display: flex;
+  position: fixed;
+  width: 100vw;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.15);
+  z-index: 100;
+  background-image: linear-gradient(to top, #75b798, transparent); }
+  .navbar__logo {
+    height: 35px;
+    width: 35px; }
+  .navbar__list {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    list-style: none; }
+  .navbar__items {
+    width: 100%; }
+
+.form > * {
+  margin: 1rem 0; }
+
+.form__formarea {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background-color: rgba(255, 228, 196, 0.9);
+  padding: 2rem;
+  text-align: center; }
+
+.form__group {
+  display: flex;
+  align-items: center;
+  width: 100%; }
+
+.form__input {
+  color: #0a3622;
+  background-color: #fff3cd;
+  font-size: medium;
+  letter-spacing: 1.2px;
+  font-family: 'Playfair Display', serif;
+  border-radius: 1rem;
+  padding: .7rem;
+  transition: all .1s;
+  border: 0 1rem 2.5rem rgba(0, 0, 0, 0.15); }
+  .form__input:focus {
+    box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.15);
+    transform: scale(1.05) translateY(-0.1rem);
+    outline-color: lightgreen;
+    border: none; }
+    .form__input:focus:invalid {
+      outline-color: orange;
+      outline-style: groove; }
+  .form__input:placeholder-shown ~ .form__label {
+    opacity: 0; }
+
+.form__label {
+  font-weight: 300;
+  margin-left: .5rem;
+  transition: all 1s ease;
+  text-transform: capitalize; }
+
+.form__social {
+  display: flex;
+  justify-content: space-evenly; }
+  .form__social > * {
+    cursor: pointer; }
+
+#form-signup .form__label {
+  opacity: 100%; }
+
+#form-signup .form__input {
+  letter-spacing: .8px; }
+
+.page-container {
+  display: flex;
+  padding: 1rem;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent), url("../public/bg-1.jpg");
+  background-size: cover; }
+
+.knowledgearea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
+  .knowledgearea__quote {
+    color: #cc9a06;
+    font-style: italic; }

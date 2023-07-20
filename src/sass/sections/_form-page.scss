@@ -1,0 +1,22 @@
+.page-container {
+    display: flex;
+    padding: 1rem;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+
+    background-image: linear-gradient(to top, rgba(black,.5), transparent), url('../public/bg-1.jpg');
+    background-size: cover;
+}
+
+.knowledgearea {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__quote {
+        color: $color-tertiary;
+        font-style: italic;
+    }
+}
