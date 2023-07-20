@@ -7,6 +7,7 @@ import Dashboard from './scripts/sections/dashboard';
 
 const showSection = [ <Dashboard /> ] //**DEBUG**[ <Dashboard />, <SignUp />, <Login />, <About /> ];
 const navigatorItems = ['Dashboard', 'Peers', 'Peer Groups', 'Pushes', 'Alerts'];
+
 function App() {
   const [currentSection, setCurrentSection] = useState(showSection[0]);  //**DEBUG**Needed to be changed to showSection[0]
   return (

@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
-import {randomQuote} from '../functions'
-import { KnowledgeArea, GetInput, FormSubmitButton, ContinueWithSocial } from './signup';
+import {GetInput, FormSubmitButton, ContinueWithSocial, KnowledgeArea} from '../components/account-form';
 
 function FormArea() {
     return (
@@ -20,7 +18,7 @@ function FormArea() {
 
 function Login() {
     return (
-        <div className="page-container">
+        <div className="page-container container">
             <KnowledgeArea />
             <FormArea />
         </div>
