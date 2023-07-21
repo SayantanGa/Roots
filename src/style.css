@@ -83,14 +83,15 @@
 
 .post {
   border: 1px solid #75b798;
-  border-radius: inherit; }
+  border-radius: inherit;
+  padding: 1rem; }
   .post__content {
     z-index: 5;
     position: relative;
     text-align: justify; }
   .post__creator {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center; }
   .post__avatar {
     height: 3rem;
@@ -99,13 +100,43 @@
     margin-right: 1rem; }
   .post__creator {
     margin-right: auto; }
+    .post__creator-details {
+      display: flex;
+      align-items: center; }
   .post__author {
     font-size: .8rem;
     font-weight: 600;
     margin-bottom: .25rem; }
+  .post__datetime {
+    font-style: italic;
+    font-size: .8rem;
+    font-weight: 100;
+    margin: 0 1rem; }
+  .post__actions {
+    display: flex; }
   .post__date {
     font-size: .7rem;
     color: #0a3622; }
+  .post__stats {
+    display: flex; }
+    .post__stats > * {
+      display: flex;
+      align-items: center;
+      margin: 0 1.5rem; }
+      .post__stats > * > * {
+        margin: 0 3px; }
+    .post__stats-item-text {
+      cursor: pointer;
+      transition: all .1s; }
+      .post__stats-item-text:hover {
+        color: #cc9a06;
+        transform: scale(1.35); }
+    .post__stats-item-radio:checked + .post__stats-item-text .post__stats-item-icon {
+      color: #0a3622;
+      font-variation-settings: 'FILL' 1; }
+
+.feed__posts {
+  overflow-y: scroll; }
 
 .page-container {
   display: flex;

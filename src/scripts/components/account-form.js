@@ -5,7 +5,7 @@ export function GetInput(props) {
 
     return (
         <div className="form__group">
-            <input type={props.type} className="form__input" placeholder={props.phtext || props.name } id={'form-login__' + props.type} pattern={props.patternRequired ? '[0-9]{10}' : null} required />
+            <input type={props.type} className="form__input" placeholder={props.phtext || props.name } id={'form-login__' + props.type} pattern={props.patternRequired ? '[0-9]{10}' : null} value={props.value} onChange={props.onChangeHandler} required />
             <label htmlFor={'form-login__' + props.type} className="form__label">{props.name}</label>
         </div>
     );
@@ -15,7 +15,7 @@ export function FormSubmitButton(props) {
 
     return (
         <div className="form__submit">
-            <input type="submit" className="btn form__submit-button" value={props.value} />
+            <button className="btn form__submit-button" onClick={props.onClick} > {props.value} </button>
         </div>
     );
 }

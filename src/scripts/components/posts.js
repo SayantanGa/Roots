@@ -1,35 +1,113 @@
+import { useEffect, useState } from 'react';
+import {nanoid} from 'nanoid';
 import {GetInput, FormSubmitButton} from './account-form'
 
-let posts = [
-    {
-        postId: 1,
-        userName: 'Captain_Anonymous',
-        avatar: '',
-        title: 'Post One',
-        content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis.',
-        likes: 10,
-        dislikes: 2,
-        comments: 5
-    }
-];
 
-export function WritePost() {
+function PostStatItems(props) {
+    return (
+        <div className='post__stats-item'>
+            <input type='radio' className='post__stats-item-radio' id={props.postId + '-' + props.type} name={props.name} checked={props.radioChecked} onChange={props.onChangeHandler} style={{display: 'none'}}/>
+            <label htmlFor={props.postId + '-' + props.type} className='post__stats-item-text' onClick={props.onClickHandler} ><span className="material-symbols-outlined post__stats-item-icon">{props.buttonType}</span></label>
+            <p className='post__stats-item-number'>{props.var}</p>
+        </div>
+    );
+}
+
+function PostStatLikings(props) {
+    const postId = props.postId;
+    const [initialLikes,initialDislikes] = [props.var[0], props.var[1]];
+    const [likes, setLikes] = useState(props.var[0]);
+    const [dislikes, setDislikes] = useState(props.var[1]);
+    const [likeChecked, setLikeChecked] = useState(false);
+    const [dislikeChecked, setDislikeChecked] = useState(false);
+
+    const handleLikeChange = () => {
+        setLikeChecked(!likeChecked);
+        setDislikeChecked(false);
+    };
+
+    const handleDislikeChange = () => {
+        setDislikeChecked(!dislikeChecked);
+        setLikeChecked(false);
+    };
+
+    useEffect(() => {
+        if (likeChecked) {
+            setLikes(initialLikes => initialLikes + 1);
+            setDislikes(initialDislikes);
+        }
+        if (dislikeChecked) {
+            setLikes(initialLikes);
+            setDislikes(initialDislikes => initialDislikes + 1);
+        }
+    }, [likeChecked, dislikeChecked]);
+
+    return (
+        <>
+            <PostStatItems buttonType='thumb_up' var={likes} type='like' postId={postId} name='likings' onChangeHandler={handleLikeChange} />
+            <PostStatItems buttonType='thumb_down' var={dislikes} type='dislike' postId={postId} name='likings' onChangeHandler={handleDislikeChange} />
+        </>
+    );
+}
+
+function PostStatComments(props) {
+    const [checked, setChecked] = useState(false);
+    const [count, setCount] = useState(props.var);
+const handleClick = (e) => {
+    e.preventDefault();
+    setChecked(!checked);
+    
+    if (!checked) {
+        setCount(count + 1);
+        e.target.style.fontVariationSettings = "'FILL' 1";
+    } else {
+        setCount(count - 1);
+        e.target.style.fontVariationSettings = "'FILL' 0";
+    }
+}
+
+    return (
+        <PostStatItems buttonType='comment' var={count} type='comment' radioChecked={checked} onClickHandler={handleClick} postId={props.postId} />
+    );  
+
+}
+
+export function WritePost(props) {
+    const currTime = new Date();
+    const [submittedData, setSubmittedData] = useState(props.template('Captain_Anonymous'));
+
+    const handleShare = (e) => {
+        e.preventDefault();
+        if(submittedData.content == false) {
+            return;
+        }
+        props.postModifiers.share(submittedData);
+        setSubmittedData(props.template('Captain_Anonymous'));
+    }
+
+    const handleChange = (e) => {
+        const { value } = e.target;
+        setSubmittedData((prevValues) => ({
+          ...prevValues,
+          content: value
+        }));
+      };
 
     return (
         <div className='writepost form__formarea'>
-            <form className='form writepost__form'>
-                <GetInput type='textarea' phtext='Share your thoughts...' />
-                <FormSubmitButton value='SHARE' />
+            <form className='form writepost__form' onSubmit={handleShare}>
+                <GetInput type='textarea' phtext='Share your thoughts...' value={submittedData.content} onChangeHandler={handleChange} />
+                <FormSubmitButton value={<span className="material-symbols-outlined post__stats-item-icon">send</span>}  />
             </form>
         </div>
     );
 }
 
 function Post(props) {
+    let datetime = props.post.datetime;
     let postId= props.post.postId;
     let userName= props.post.userName;
     let avatar= props.post.avatar;
-    let title= props.post.title;
     let content= props.post.content;
     let likes=props.post.likes;
     let dislikes= props.post.dislikes;
@@ -38,37 +116,34 @@ function Post(props) {
     return(
         <div className='post'>
             <div className='post__creator'>
-                <img src={avatar} alt='avatar' className='post__avatar' />
-                <p className='post__author'>{userName}</p>
-                <FormSubmitButton value='EDIT' />
-                <FormSubmitButton value='DELETE' />
+                <div className='post__creator-details'>
+                    <img src={avatar} alt='avatar' className='post__avatar' />
+                    <p className='post__author'>{userName}</p>
+                    <p className='post__datetime'>{`${datetime.hr}:${datetime.min}, ${datetime.date}/${datetime.month}/${datetime.year}`}</p>
+                </div>
+                <div className='post__actions'>
+                    <FormSubmitButton value={<span className="material-symbols-outlined post__stats-item-icon">edit</span>}  />
+                    <FormSubmitButton value={<span className="material-symbols-outlined post__stats-item-icon">delete_forever</span>} onClick = {() => props.postModifiers.delete(postId)} />
+                </div>
             </div>
             <div className='post__content'>
-                <h3 className='post__title'>{title}</h3>
                 <p className='post__content'>{content}</p>
             </div>
             <div className='post__stats'>
-                <div className='post__stats-item'>
-                    <p className='post__stats-item-text'>Likes</p>
-                    <p className='post__stats-item-number'>{likes}</p>
-                </div>
-                <div className='post__stats-item'>
-                    <p className='post__stats-item-text'>Dislikes</p>
-                    <p className='post__stats-item-number'>{dislikes}</p>
-                </div>
-                <div className='post__stats-item'>
-                    <p className='post__stats-item-text'>Comments</p>
-                    <p className='post__stats-item-number'>{comments}</p>
-                </div>
+                <PostStatLikings var={[likes, dislikes]} postId={postId} />
+                <PostStatComments var={comments} postId={postId} />
             </div>
         </div>
     );
 }
 
-export function AllPosts() {
+export function AllPosts(props) {
+
+    const posts = props.posts;
+
     const postItems = posts?.map((post) => {
         return (
-            <Post post = {post} />
+            <Post key={post.postId} post = {post} postModifiers={props.postModifiers} />
         )
     });
     
