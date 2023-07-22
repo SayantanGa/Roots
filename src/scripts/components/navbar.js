@@ -1,3 +1,4 @@
+import {FormSubmitButton} from './account-form'
 
 function Logo() {
     return (
@@ -8,23 +9,21 @@ function Logo() {
 function NavItem(props) {
     return (
         <li className="navbar__item" >
-            <a className="navbar__link" href="#"> { props.item } </a>
+            <a className="navbar__link" href={props.to || '#' } > { props.item } </a>
         </li>
     );
 }
 
 function GetAuth(props) {
     return (
-        <button className="btn btn-flat">
-            <a href="#">{ props.type }</a>
-        </button>
+        <a href={props.to} className="btn form__submit-button"> <span> {props.value} </span> </a>
     );
 }
 
 function Navbar(props) {
     const listItems = props.listItems?.map((item) => {
         return (
-            <NavItem item = {item} />
+            <NavItem item = {item.name} to = {item.link} />
         )
     });
     return (
@@ -34,8 +33,8 @@ function Navbar(props) {
                 {listItems}
             </ul>
             <ul className="navbar__list">
-                <GetAuth type='Sign Up!' />
-                <GetAuth type='Login'/>
+                <GetAuth value='Sign Up!' to='./signup' />
+                <GetAuth value='Login' to='./login' />
             </ul>
         </nav>
     );

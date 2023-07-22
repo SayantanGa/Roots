@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './style.css';
 import Navbar from './scripts/components/navbar';
 import Login from './scripts/sections/login';
@@ -6,15 +7,40 @@ import SignUp from './scripts/sections/signup';
 import Dashboard from './scripts/sections/dashboard';
 
 const showSection = [ <Dashboard /> ] //**DEBUG**[ <Dashboard />, <SignUp />, <Login />, <About /> ];
-const navigatorItems = ['Dashboard', 'Peers', 'Peer Groups', 'Pushes', 'Alerts'];
+const navigatorItems = [
+  {
+    name: 'Dashboard',
+    link: './'
+   },
+   {
+    name: 'Peers',
+    link: '#'
+   },
+   {
+    name: 'Peer Groups',
+    link: '#'
+   },
+   {
+    name: 'Pushes',
+    link: '#'
+   },
+   {
+    name: 'Alerts',
+    link: '#'
+   }
+];
 
 function App() {
   const [currentSection, setCurrentSection] = useState(showSection[0]);  //**DEBUG**Needed to be changed to showSection[0]
   return (
-    <div>
+    <BrowserRouter>
       <Navbar listItems = {navigatorItems} />
-      {currentSection}
-    </div>
+      <Routes>
+        <Route exact path='/' element={<Dashboard />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

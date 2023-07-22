@@ -12,11 +12,13 @@
     border: 1px solid $color-primary;
     border-radius: inherit;
     padding: 1rem;
+    margin: .5rem;
 
     &__content{
         z-index:5;
         position: relative;
         text-align: justify;
+        padding: 1rem;
     }
     &__creator{
         display:flex;
@@ -68,9 +70,19 @@
             &-text{
                 cursor: pointer;
                 transition: all .1s;
+
                 &:hover {
                     color: $color-tertiary;
                     transform: scale(1.35);
+                }
+
+                span {
+
+                    transition: all .2s;
+
+                    &:active {
+                        transform: scale(0) rotate(300deg);
+                    }
                 }
             }
             &-radio:checked + &-text &-icon {
@@ -84,5 +96,7 @@
 .feed {
     &__posts {
         overflow-y: scroll;
+        height: 80vh;
+        width: 70vw;
     }
 }

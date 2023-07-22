@@ -15,7 +15,7 @@ export function FormSubmitButton(props) {
 
     return (
         <div className="form__submit">
-            <button className="btn form__submit-button" onClick={props.onClick} > {props.value} </button>
+            <button className="btn form__submit-button" onClick={props.onClick} > <span> {props.value} </span> </button>
         </div>
     );
 }

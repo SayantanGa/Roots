@@ -23,9 +23,6 @@
   margin: 1rem 0; }
 
 .form__formarea {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   background-color: rgba(255, 228, 196, 0.9);
   padding: 2rem;
   text-align: center;
@@ -84,11 +81,13 @@
 .post {
   border: 1px solid #75b798;
   border-radius: inherit;
-  padding: 1rem; }
+  padding: 1rem;
+  margin: .5rem; }
   .post__content {
     z-index: 5;
     position: relative;
-    text-align: justify; }
+    text-align: justify;
+    padding: 1rem; }
   .post__creator {
     display: flex;
     justify-content: space-between;
@@ -131,12 +130,46 @@
       .post__stats-item-text:hover {
         color: #cc9a06;
         transform: scale(1.35); }
+      .post__stats-item-text span {
+        transition: all .2s; }
+        .post__stats-item-text span:active {
+          transform: scale(0) rotate(300deg); }
     .post__stats-item-radio:checked + .post__stats-item-text .post__stats-item-icon {
       color: #0a3622;
       font-variation-settings: 'FILL' 1; }
 
 .feed__posts {
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  height: 80vh;
+  width: 70vw; }
+
+.btn {
+  font-family: 'Lobster Two', cursive;
+  font-size: large;
+  height: 3rem;
+  width: 5rem;
+  margin: 0 1rem;
+  border-radius: 1rem;
+  background-color: transparent;
+  cursor: pointer;
+  text-align: center;
+  vertical-align: middle;
+  transition: all .3s;
+  border: none;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .btn span {
+    transition: all .3s; }
+  .btn:hover {
+    background-color: mediumspringgreen; }
+    .btn:hover span {
+      transform: scale(1.2) rotate(-15deg); }
+  .btn:active {
+    transform: scale(0); }
+    .btn:active span {
+      transform: scale(0) rotate(300deg); }
 
 .page-container {
   display: flex;

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-import {nanoid} from 'nanoid';
-import {GetInput, FormSubmitButton} from './account-form'
+import {FormSubmitButton} from './account-form'
 
 
 function PostStatItems(props) {
@@ -73,8 +72,7 @@ const handleClick = (e) => {
 }
 
 export function WritePost(props) {
-    const currTime = new Date();
-    const [submittedData, setSubmittedData] = useState(props.template('Captain_Anonymous'));
+    const [submittedData, setSubmittedData] = [props.formData, props.postModifiers.setSubmittedData]
 
     const handleShare = (e) => {
         e.preventDefault();
@@ -82,7 +80,7 @@ export function WritePost(props) {
             return;
         }
         props.postModifiers.share(submittedData);
-        setSubmittedData(props.template('Captain_Anonymous'));
+        setSubmittedData(props.template());
     }
 
     const handleChange = (e) => {
@@ -96,8 +94,8 @@ export function WritePost(props) {
     return (
         <div className='writepost form__formarea'>
             <form className='form writepost__form' onSubmit={handleShare}>
-                <GetInput type='textarea' phtext='Share your thoughts...' value={submittedData.content} onChangeHandler={handleChange} />
-                <FormSubmitButton value={<span className="material-symbols-outlined post__stats-item-icon">send</span>}  />
+                <textarea rows={8} cols={25} className="form__input" placeholder='Share your thoughts...' value={submittedData.content } onChange={handleChange} />
+                <FormSubmitButton value={<span className="material-symbols-outlined post__stats-item-icon">{props.isEdit ? 'select_check_box' : 'send'}</span>}  />
             </form>
         </div>
     );
@@ -119,10 +117,10 @@ function Post(props) {
                 <div className='post__creator-details'>
                     <img src={avatar} alt='avatar' className='post__avatar' />
                     <p className='post__author'>{userName}</p>
-                    <p className='post__datetime'>{`${datetime.hr}:${datetime.min}, ${datetime.date}/${datetime.month}/${datetime.year}`}</p>
+                    <p className='post__datetime'>{`${datetime.hr}:${datetime.min}, ${datetime.date}/${datetime.month}/${datetime.year}` + `${props.post.edited ? ' ~ edited' : ''}`}</p>
                 </div>
                 <div className='post__actions'>
-                    <FormSubmitButton value={<span className="material-symbols-outlined post__stats-item-icon">edit</span>}  />
+                    <FormSubmitButton value={<span className="material-symbols-outlined post__stats-item-icon">edit_square</span>} onClick = {() => props.postModifiers.edit(postId)} />
                     <FormSubmitButton value={<span className="material-symbols-outlined post__stats-item-icon">delete_forever</span>} onClick = {() => props.postModifiers.delete(postId)} />
                 </div>
             </div>

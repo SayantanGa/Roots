@@ -14,6 +14,7 @@ const initialPosts = [
             month:'7',
             year:'2023'
         },
+        edited: false,
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis.',
         likes: 10,
         dislikes: 2,
@@ -30,13 +31,14 @@ const initialPosts = [
             month:'1',
             year:'2023'
         },
+        edited: true,
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis.',
         likes: 15,
         dislikes: 5,
         comments: 9
     }
 ];
-const postTemplate = (userName) => {
+const template = (userName='Captain_Anonymous') => {
     const postId = `post_${userName}_${nanoid()}`;
     const time = new Date();
     return {
@@ -49,6 +51,7 @@ const postTemplate = (userName) => {
         month:time.getMonth(),
         year:time.getFullYear()
     },
+    edited: false,
     postId: postId,
     key: postId,
     content: '',
@@ -68,11 +71,23 @@ function AccountInfoDb() {
 
 function Feed() {
     /*******************        POSTS     ******************* */
-    const [posts, setPosts] = useState(initialPosts)
+    const [posts, setPosts] = useState(initialPosts);
+    const [submittedData, setSubmittedData] = useState(template());
+    const [editMode, setEditMode] = useState(false);
+
+    const editPost = (postId) => {
+        const post = posts.find((post) => post.postId === postId);
+        post.edited = true;
+        setEditMode(true);
+        setSubmittedData(post);
+        deletePost(postId);
+    }    
 
     const sharePost = (formData) => {
         setPosts((prevPosts) => [formData, ...prevPosts]);
-      };
+        setSubmittedData(template());
+        setEditMode(false);
+    }
 
     function deletePost(postId) {
         const newPosts = posts.filter((post) => post.postId !== postId);
@@ -81,14 +96,16 @@ function Feed() {
 
     const postModifiers = {
         delete: deletePost,
-        share: sharePost
+        share: sharePost,
+        edit: editPost,
+        setSubmittedData: setSubmittedData
     }
 
     /****************************************************** */
 
     return (
-        <div>
-            <WritePost postModifiers={postModifiers} template={postTemplate}/>
+        <div className="conainer dashboard-container page-container">
+            <WritePost isEdit={editMode} formData={submittedData} postModifiers={postModifiers} template={template}/>
             <AllPosts posts={posts} postModifiers={postModifiers}/>
         </div>
     );
@@ -98,9 +115,6 @@ function Feed() {
 export default function Dashboard() {
     
     return (
-        <div className="conainer dashboard-container page-container">
-            <AccountInfoDb />
-            <Feed />
-        </div>
+        <Feed />
     );
 }
