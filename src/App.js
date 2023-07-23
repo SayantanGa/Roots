@@ -6,7 +6,6 @@ import Login from './scripts/sections/login';
 import SignUp from './scripts/sections/signup';
 import Dashboard from './scripts/sections/dashboard';
 
-const showSection = [ <Dashboard /> ] //**DEBUG**[ <Dashboard />, <SignUp />, <Login />, <About /> ];
 const navigatorItems = [
   {
     name: 'Dashboard',
@@ -31,7 +30,7 @@ const navigatorItems = [
 ];
 
 function App() {
-  const [currentSection, setCurrentSection] = useState(showSection[0]);  //**DEBUG**Needed to be changed to showSection[0]
+
   return (
     <BrowserRouter>
       <Navbar listItems = {navigatorItems} />

@@ -83,6 +83,14 @@ export function WritePost(props) {
         setSubmittedData(props.template());
     }
 
+    const handleImageUpload = (e) => {
+        e.target.files && e.target.files[0] && (
+        setSubmittedData((prevValues) => ({
+            ...prevValues,
+            imgUrl: URL.createObjectURL(e.target.files[0])
+        })))
+    }
+
     const handleChange = (e) => {
         const { value } = e.target;
         setSubmittedData((prevValues) => ({
@@ -94,9 +102,23 @@ export function WritePost(props) {
     return (
         <div className='writepost form__formarea'>
             <form className='form writepost__form' onSubmit={handleShare}>
+                <PostCreator avatar='user1.jpg' userName='Captain_Anonymous' />
                 <textarea rows={8} cols={25} className="form__input" placeholder='Share your thoughts...' value={submittedData.content } onChange={handleChange} />
-                <FormSubmitButton value={<span className="material-symbols-outlined post__stats-item-icon">{props.isEdit ? 'select_check_box' : 'send'}</span>}  />
+                <div style={{display:'flex', justifyContent:'space-between'}}>
+                    <input type='file' className='writepost__img-input' id='uploadImg' onChange={handleImageUpload} style={{display:'none'}} />
+                    <label htmlFor='uploadImg' ><span className="post__stats-item-icon btn"><span className='material-symbols-outlined'>center_focus_strong</span></span></label>
+                    <button className="btn form__submit-button" onClick={props.onClick} > <span className="material-symbols-outlined post__stats-item-icon">{props.isEdit ? 'select_check_box' : 'send'}</span> </button>
+                </div>
             </form>
+        </div>
+    );
+}
+
+function PostCreator(props) {
+    return (
+        <div className='post__creator-details'>
+            <img src={props.avatar} alt='avatar' className='post__avatar' />
+            <p className='post__author'>{props.userName}</p>
         </div>
     );
 }
@@ -110,13 +132,13 @@ function Post(props) {
     let likes=props.post.likes;
     let dislikes= props.post.dislikes;
     let comments= props.post.comments;
+    let imgUrl = props.post.imgUrl;
 
     return(
         <div className='post'>
             <div className='post__creator'>
                 <div className='post__creator-details'>
-                    <img src={avatar} alt='avatar' className='post__avatar' />
-                    <p className='post__author'>{userName}</p>
+                    <PostCreator avatar={avatar} userName={userName} />
                     <p className='post__datetime'>{`${datetime.hr}:${datetime.min}, ${datetime.date}/${datetime.month}/${datetime.year}` + `${props.post.edited ? ' ~ edited' : ''}`}</p>
                 </div>
                 <div className='post__actions'>
@@ -126,6 +148,7 @@ function Post(props) {
             </div>
             <div className='post__content'>
                 <p className='post__content'>{content}</p>
+                {imgUrl && <img src={imgUrl} height={300} />}
             </div>
             <div className='post__stats'>
                 <PostStatLikings var={[likes, dislikes]} postId={postId} />

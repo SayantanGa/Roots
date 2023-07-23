@@ -14,6 +14,7 @@ const initialPosts = [
             month:'7',
             year:'2023'
         },
+        imgUrl:null,
         edited: false,
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis.',
         likes: 10,
@@ -31,6 +32,7 @@ const initialPosts = [
             month:'1',
             year:'2023'
         },
+        imgUrl:null,
         edited: true,
         content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet nisl purus in mollis. Aliquam ultrices sagittis orci a. Venenatis cras sed felis eget velit aliquet sagittis.',
         likes: 15,
@@ -51,6 +53,7 @@ const template = (userName='Captain_Anonymous') => {
         month:time.getMonth(),
         year:time.getFullYear()
     },
+    imgUrl: null,
     edited: false,
     postId: postId,
     key: postId,
