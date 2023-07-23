@@ -20,14 +20,14 @@ export function FormSubmitButton(props) {
     );
 }
 
-export function ContinueWithSocial() {
+export function ContinueWithSocial({Alert}) {
 
     return(
         <>
             <p className="form__continue"> Or continue with</p>
             <div className="form__social">
-                <img src="./g-logo.svg" id="google-logo" alt="Google" width={'30'}/>
-                <img src="./apple-logo.svg" id="apple-logo" alt="Apple" width={'30'}/>
+                <img src="./g-logo.svg" id="google-logo" alt="Google" width={'30'} onClick={()=> Alert('Google Authentication Successful!')}/>
+                <img src="./apple-logo.svg" id="apple-logo" alt="Apple" width={'30'} onClick={()=> Alert('Apple Authentication Successful!')}/>
             </div>
         </>
     );

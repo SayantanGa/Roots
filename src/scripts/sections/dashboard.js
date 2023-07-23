@@ -72,7 +72,7 @@ function AccountInfoDb() {
     );
 }
 
-function Feed() {
+function Feed({Alert}) {
     /*******************        POSTS     ******************* */
     const [posts, setPosts] = useState(initialPosts);
     const [submittedData, setSubmittedData] = useState(template());
@@ -88,13 +88,20 @@ function Feed() {
 
     const sharePost = (formData) => {
         setPosts((prevPosts) => [formData, ...prevPosts]);
+        if(editMode) {
+            Alert('Post Edited');
+        } else {
+            Alert('Post Shared')
+        }
         setSubmittedData(template());
         setEditMode(false);
     }
 
     function deletePost(postId) {
+        const deletedPost = posts.find((post) => post.postId === postId);
         const newPosts = posts.filter((post) => post.postId !== postId);
         setPosts(newPosts);
+        deletedPost.edited || Alert('Post Deleted')
     }
 
     const postModifiers = {
@@ -115,9 +122,9 @@ function Feed() {
 }
 
 
-export default function Dashboard() {
+export default function Dashboard({Alert}) {
     
     return (
-        <Feed />
+        <Feed Alert={Alert} />
     );
 }

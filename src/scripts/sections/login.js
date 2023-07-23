@@ -1,6 +1,6 @@
 import {GetInput, FormSubmitButton, ContinueWithSocial, KnowledgeArea} from '../components/account-form';
 
-function FormArea() {
+function FormArea({Alert}) {
     return (
         <div className="form__formarea">
             <form action="#" className='form' id="form-login">
@@ -10,17 +10,17 @@ function FormArea() {
                 <a href="#" className="form__forgotpassword">Forgot your password?</a>
                 <FormSubmitButton value='Continue' />
                 <hr />
-                <ContinueWithSocial />
+                <ContinueWithSocial Alert={Alert} />
             </form>
         </div>
     );
 }
 
-function Login() {
+function Login({Alert}) {
     return (
         <div className="page-container container">
             <KnowledgeArea />
-            <FormArea />
+            <FormArea Alert={Alert} />
         </div>
     );
 }
