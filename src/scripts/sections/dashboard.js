@@ -64,15 +64,7 @@ const template = (userName='Captain_Anonymous') => {
     }
 }
 
-function AccountInfoDb() {
-    
-    return (
-        <>
-        </>
-    );
-}
-
-function Feed({Alert}) {
+function Feed({Alert, isLoggedIn}) {
     /*******************        POSTS     ******************* */
     const [posts, setPosts] = useState(initialPosts);
     const [submittedData, setSubmittedData] = useState(template());
@@ -114,17 +106,17 @@ function Feed({Alert}) {
     /****************************************************** */
 
     return (
-        <div className="conainer dashboard-container page-container">
-            <WritePost isEdit={editMode} formData={submittedData} postModifiers={postModifiers} template={template}/>
+        <div className="conainer dashboard-container page-container" >
+            <WritePost isEdit={editMode} formData={submittedData} postModifiers={postModifiers} template={template} isLoggedIn={isLoggedIn} Alert={Alert}/>
             <AllPosts posts={posts} postModifiers={postModifiers}/>
         </div>
     );
 }
 
 
-export default function Dashboard({Alert}) {
+export default function Dashboard({Alert, isLoggedIn}) {
     
     return (
-        <Feed Alert={Alert} />
+        <Feed Alert={Alert} isLoggedIn={isLoggedIn} />
     );
 }

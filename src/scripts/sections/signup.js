@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom'
 import {GetInput, FormSubmitButton, ContinueWithSocial, KnowledgeArea} from '../components/account-form';
 
-function FormArea({Alert}) {
+function FormArea({Alert, onLogin}) {
 
     const [pwd, setPwd] = useState('');
     const [cpwd, setCpwd] = useState('');
@@ -22,7 +22,10 @@ function FormArea({Alert}) {
     const handleSubmit = (e) => {
         if(pwd === cpwd) {
            Alert('Account created successfully!');
-           navigate('/');
+           onLogin(true);
+           setTimeout(()=>{
+            navigate('/');
+           }, 1000);
         } else if(pwd !== cpwd) {
             Alert('Confirm Password and Password don\'t match');
         } else {
@@ -42,19 +45,25 @@ function FormArea({Alert}) {
                 <GetInput type='cpassword' name='Confirm Password' phtext='Have you typed correctly?' value={cpwd} onChangeHandler={handleChangeCpwd} />
                 <FormSubmitButton value='Continue' />
                 <hr />
-                <ContinueWithSocial Alert={Alert} />
+                <ContinueWithSocial Alert={Alert} onLogin={onLogin} />
             </form>
         </div>
     );
 }
 
-function SignUp({Alert}) {
-    return (
-        <div className="page-container container">
-            <KnowledgeArea />
-            <FormArea Alert={Alert} />
-        </div>
-    );
+function SignUp({Alert, onLogin}) {
+
+  return (
+      <div className="page-container container" style={{backgroundImage:'none'}}>
+          <div className="bg-video">
+            <video className="bg-video__content" autoPlay loop muted>
+                <source src="video.webm" type="video/mp4" />
+            </video>
+          </div>
+          <KnowledgeArea />
+          <FormArea Alert={Alert} onLogin={onLogin} />
+      </div>
+  );
 }
 
 export default SignUp;

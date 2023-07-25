@@ -1,8 +1,9 @@
-import {FormSubmitButton} from './account-form'
+import { Link } from 'react-router-dom';
+import {PostCreator} from './posts'
 
 function Logo() {
     return (
-        <img src="../logo-main.png" alt="logo" className="logo navbar__logo" />
+        <Link to="/about"><img src="../logo-main.png" alt="logo" className="logo navbar__logo" /></Link>
     );
 }
 
@@ -14,10 +15,26 @@ function NavItem(props) {
     );
 }
 
+/**
+ * Renders an anchor element with a button style.
+ *
+ * @param {Object} props - The properties for the component.
+ * @param {string} props.to - The URL to navigate to when the button is clicked.
+ * @param {string} props.value - The text value to display inside the button.
+ * @return {JSX.Element} The rendered anchor element.
+ */
 function GetAuth(props) {
     return (
         <a href={props.to} className="btn form__submit-button"> <span> {props.value} </span> </a>
     );
+}
+
+function UserAccess() {
+    return(
+    <>
+        <GetAuth value='Sign Up!' to='./signup' />
+        <GetAuth value='Login' to='./login' />
+    </>);
 }
 
 function Navbar(props) {
@@ -33,8 +50,7 @@ function Navbar(props) {
                 {listItems}
             </ul>
             <ul className="navbar__list">
-                <GetAuth value='Sign Up!' to='./signup' />
-                <GetAuth value='Login' to='./login' />
+                {props.loggedIn ? <PostCreator avatar='user1.jpg' userName='Captain_Anonymous' /> : <UserAccess />}
             </ul>
         </nav>
     );

@@ -12,6 +12,9 @@
     opacity: 1;
     top: -10vh; } }
 
+:root {
+  --bgImg: linear-gradient(to top, rgba(black,.5), transparent), url('../public/bg-1.jpg'); }
+
 .navbar {
   display: flex;
   position: fixed;
@@ -21,7 +24,8 @@
   padding: 1rem 2rem;
   box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.15);
   z-index: 100;
-  background-image: linear-gradient(to top, #75b798, transparent); }
+  background-image: linear-gradient(to top, #75b798 40%, transparent);
+  backdrop-filter: blur(5px); }
   .navbar__logo {
     height: 35px;
     width: 35px; }
@@ -210,7 +214,7 @@
   justify-content: space-around;
   align-items: center;
   height: 100vh;
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent), url("../public/bg-1.jpg");
+  background-image: var(--bgImg);
   background-size: cover; }
 
 .knowledgearea {
@@ -221,3 +225,34 @@
   .knowledgearea__quote {
     color: #cc9a06;
     font-style: italic; }
+
+.bg-video {
+  height: 100%;
+  width: 100%;
+  opacity: 1;
+  overflow: hidden;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.bg-video__content {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover; }
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  text-align: justify;
+  padding: 6rem 3rem;
+  background-image: linear-gradient(to top, #cc9a06, #75b798, rgba(0, 250, 154, 0.8)); }
+  .about h1 {
+    margin: 3rem; }
+  .about h2 {
+    margin: 1.5rem; }
+  .about img {
+    height: 20rem; }

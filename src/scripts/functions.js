@@ -1,5 +1,8 @@
-
-
+/**
+ * Retrieves a random quote from a remote API.
+ *
+ * @return {Array} An array containing the randomly selected quote and its author.
+ */
 export const randomQuote = async () => {
     const url = "../../type.fit_api_quotes.txt";
     const response = await fetch(url);
@@ -9,3 +12,5 @@ export const randomQuote = async () => {
     const authorName = author || "Unknown";
     return [text, authorName];
 }
+
+export const bgImg = (x) => `linear-gradient(to top, rgba(0,0,0,.5), transparent), url('./bg-${x}.jpg')`;
