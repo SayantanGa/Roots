@@ -230,7 +230,7 @@ function Post(props) {
             </div>
             <div className='post__content'>
                 <p className='post__content'>{content}</p>
-                {imgUrl && <img src={imgUrl} height={300} />}
+                {imgUrl && <img src={imgUrl} className='post__img' />}
             </div>
             <div className='post__stats'>
                 <PostStatLikings var={[likes, dislikes]} postId={postId} />

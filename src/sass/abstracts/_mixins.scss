@@ -10,3 +10,32 @@
     justify-content: center;
     align-items: center;
 }
+
+@mixin mQ($breakpt) {
+    @if $breakpt == phone {
+        @media only screen and (max-width: 30em) {
+            @content;
+        }
+    }
+    @if $breakpt == tab-p {
+        @media only screen and (max-width: 40.75em) {
+            @content;
+        }
+    }
+    @if $breakpt == tab-l {
+        @media only screen and (max-width: 61.5em) {
+            @content;
+        }
+    }
+    @if $breakpt == big-d {
+        @media only screen and (min-width: 90em) {
+            @content;
+        }
+    }
+}
+
+@mixin restructure {
+    @media only screen and (max-width: 52.5em) {
+        @content;
+    }
+}

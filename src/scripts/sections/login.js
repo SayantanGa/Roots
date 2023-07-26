@@ -49,7 +49,7 @@ function FormArea({Alert, onLogin}) {
 
 function Login({Alert, onLogin}) {
     return (
-        <div className="page-container container">
+        <div className="page-container container login-container">
             <KnowledgeArea />
             <FormArea Alert={Alert} onLogin={onLogin} />
         </div>

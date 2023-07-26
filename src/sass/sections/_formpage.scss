@@ -9,6 +9,20 @@
     background-size: cover;
 }
 
+.dashboard-container {
+    @include restructure {
+        flex-direction: column;
+    }
+}
+
+.login-container {
+
+    @include restructure {
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+}
+
 .knowledgearea {
     display: flex;
     flex-direction: column;
@@ -18,6 +32,10 @@
     &__quote {
         color: $color-tertiary;
         font-style: italic;
+    }
+
+    &__logo {
+        height: 25rem;
     }
 }
 
@@ -29,9 +47,11 @@
     z-index: -1;
     position: absolute;
     top: 0;
-    left: 0; }
-    .bg-video__content {
-      width: 100%;
-      height: 100%;
-      -o-object-fit: cover;
-         object-fit: cover; }
+    left: 0; 
+    &__content {
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover; 
+    }
+}

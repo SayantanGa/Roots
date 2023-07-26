@@ -1,5 +1,8 @@
 .alert {
     --width: 30vw;
+    @include restructure {
+        --width: 40vw;
+    }
     position: fixed;
     top: -10vh;
     left:calc(50vw - var(--width)/2);

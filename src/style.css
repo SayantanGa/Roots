@@ -15,6 +15,22 @@
 :root {
   --bgImg: linear-gradient(to top, rgba(black,.5), transparent), url('../public/bg-1.jpg'); }
 
+@media only screen and (max-width: 61.5em) {
+  html {
+    font-size: 80%; } }
+
+@media only screen and (max-width: 40.75em) {
+  html {
+    font-size: 65%; } }
+
+@media only screen and (max-width: 30em) {
+  html {
+    font-size: 45%; } }
+
+@media only screen and (min-width: 90em) {
+  html {
+    font-size: 120%; } }
+
 .navbar {
   display: flex;
   position: fixed;
@@ -95,12 +111,20 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center; }
+  @media only screen and (max-width: 52.5em) {
+    .writepost__form {
+      margin-top: 5em; } }
+  @media only screen and (max-width: 52.5em) {
+    .writepost__form textarea {
+      width: 85vw;
+      height: 15vh; } }
 
 .post {
   border: 1px solid #75b798;
   border-radius: inherit;
   padding: 1rem;
-  margin: .5rem; }
+  margin: .5rem;
+  font-size: medium; }
   .post__content {
     z-index: 5;
     position: relative;
@@ -134,6 +158,8 @@
   .post__date {
     font-size: .7rem;
     color: #0a3622; }
+  .post__img {
+    max-height: 18em; }
   .post__stats {
     display: flex; }
     .post__stats > * {
@@ -160,6 +186,9 @@
   overflow-y: scroll;
   height: 80vh;
   width: 70vw; }
+  @media only screen and (max-width: 52.5em) {
+    .feed__posts {
+      width: 95vw; } }
 
 .btn {
   font-family: 'Lobster Two', cursive;
@@ -207,6 +236,9 @@
   align-items: center;
   animation: drop-from-top 4s 1;
   animation-direction: forwards; }
+  @media only screen and (max-width: 52.5em) {
+    .alert {
+      --width: 40vw; } }
 
 .page-container {
   display: flex;
@@ -217,6 +249,15 @@
   background-image: var(--bgImg);
   background-size: cover; }
 
+@media only screen and (max-width: 52.5em) {
+  .dashboard-container {
+    flex-direction: column; } }
+
+@media only screen and (max-width: 52.5em) {
+  .login-container {
+    flex-direction: column;
+    justify-content: space-evenly; } }
+
 .knowledgearea {
   display: flex;
   flex-direction: column;
@@ -225,6 +266,8 @@
   .knowledgearea__quote {
     color: #cc9a06;
     font-style: italic; }
+  .knowledgearea__logo {
+    height: 25rem; }
 
 .bg-video {
   height: 100%;
@@ -235,12 +278,11 @@
   position: absolute;
   top: 0;
   left: 0; }
-
-.bg-video__content {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover; }
+  .bg-video__content {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover; }
 
 .about {
   display: flex;

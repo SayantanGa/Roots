@@ -5,7 +5,19 @@
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+
+        @include restructure {
+            margin-top: 5em;
+        }
+
+        textarea {
+            @include restructure {
+                width: 85vw;
+                height: 15vh;;
+            }
+        }
     }
+
 }
 
 .post {
@@ -13,6 +25,7 @@
     border-radius: inherit;
     padding: 1rem;
     margin: .5rem;
+    font-size: medium;
 
     &__content{
         z-index:5;
@@ -56,6 +69,9 @@
         font-size: .7rem;
         color: $color-secondary;
     }
+    &__img {
+        max-height: 18em;
+    }
     &__stats {
         display: flex;
         &>* {
@@ -98,5 +114,9 @@
         overflow-y: scroll;
         height: 80vh;
         width: 70vw;
+
+        @include restructure {
+            width: 95vw;
+        }
     }
 }
