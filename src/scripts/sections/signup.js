@@ -1,4 +1,4 @@
-import { useState, useEffect} from 'react';
+import { useState} from 'react';
 import {useNavigate} from 'react-router-dom'
 import {GetInput, FormSubmitButton, ContinueWithSocial, KnowledgeArea} from '../components/account-form';
 
@@ -57,7 +57,7 @@ function SignUp({Alert, onLogin}) {
       <div className="page-container container login-container" style={{backgroundImage:'none'}}>
           <div className="bg-video">
             <video className="bg-video__content" autoPlay loop muted>
-                <source src="video.webm" type="video/mp4" />
+                <source src="/video.webm" type="video/mp4" />
             </video>
           </div>
           <KnowledgeArea />

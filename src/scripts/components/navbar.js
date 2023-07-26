@@ -3,7 +3,7 @@ import {PostCreator} from './posts'
 
 function Logo() {
     return (
-        <Link to="/about"><img src="../logo-main.png" alt="logo" className="logo navbar__logo" /></Link>
+        <Link to="/about"><img src="/logo-main.png" alt="logo" className="logo navbar__logo" /></Link>
     );
 }
 
@@ -38,9 +38,9 @@ function UserAccess() {
 }
 
 function Navbar(props) {
-    const listItems = props.listItems?.map((item) => {
+    const listItems = props.listItems?.map((item, index) => {
         return (
-            <NavItem item = {item.name} to = {item.link} />
+            <NavItem item = {item.name} to = {item.link} key={item.name + index} />
         )
     });
     return (
@@ -50,7 +50,7 @@ function Navbar(props) {
                 {listItems}
             </ul>
             <ul className="navbar__list">
-                {props.loggedIn ? <PostCreator avatar='user1.jpg' userName='Captain_Anonymous' /> : <UserAccess />}
+                {props.loggedIn ? <PostCreator avatar='/user1.jpg' userName='Captain_Anonymous' /> : <UserAccess />}
             </ul>
         </nav>
     );

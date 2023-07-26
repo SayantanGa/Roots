@@ -9,6 +9,7 @@ import Alert from './scripts/components/alert';
 import {bgImg} from './scripts/functions'
 import AboutPage from './scripts/sections/about';
 
+
 const navigatorItems = [
   {
     name: 'Dashboard',

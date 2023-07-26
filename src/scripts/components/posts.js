@@ -154,7 +154,7 @@ export function WritePost(props) {
     return (
         <div className='writepost form__formarea'>
             <form className='form writepost__form' onSubmit={handleShare}>
-                {props.isLoggedIn && <PostCreator avatar='user1.jpg' userName='Captain_Anonymous' />}
+                {props.isLoggedIn && <PostCreator avatar='/user1.jpg' userName='Captain_Anonymous' />}
                 <textarea rows={8} cols={25} className="form__input" placeholder='Share your thoughts...' value={submittedData.content } onChange={handleChange} />
                 <div style={{display:'flex', justifyContent:'space-between'}}>
                     <input type='file' className='writepost__img-input' id='uploadImg' onChange={handleImageUpload} style={{display:'none'}} />

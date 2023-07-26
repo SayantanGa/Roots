@@ -1,7 +1,7 @@
 function AboutPage() {
   return (
     <div className="about" >
-      <img src="../logo-main.png" alt="Roots" className="about__logo" />
+      <img src="/logo-main.png" alt="Roots" className="about__logo" />
       <h1>Welcome to Roots - Where Connection Meets Community!</h1>
       <p>
         At Roots, we believe in the power of meaningful connections that transcend the digital realm.

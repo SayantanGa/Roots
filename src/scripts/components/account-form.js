@@ -65,8 +65,8 @@ export function ContinueWithSocial({Alert, onLogin}) {
         <>
             <p className="form__continue"> Or continue with</p>
             <div className="form__social">
-                <img src="./g-logo.svg" id="google-logo" alt="Google" width={'30'} onClick={()=> handleSubmit('Google')}/>
-                <img src="./apple-logo.svg" id="apple-logo" alt="Apple" width={'30'} onClick={()=> handleSubmit('Apple')}/>
+                <img src="/g-logo.svg" id="google-logo" alt="Google" width={'30'} onClick={()=> handleSubmit('Google')}/>
+                <img src="/apple-logo.svg" id="apple-logo" alt="Apple" width={'30'} onClick={()=> handleSubmit('Apple')}/>
             </div>
         </>
     );
@@ -92,7 +92,7 @@ export function KnowledgeArea() {
     return (
         <div className="knowledgearea">
             <img
-                src="../logo-main-removedbg.png"
+                src="/logo-main-removedbg.png"
                 alt="Roots"
                 className="knowledgearea__logo"
             />
